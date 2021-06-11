@@ -1,0 +1,16 @@
+.dropDown {
+  width: 25vw;
+  border: 1px solid black;
+  z-index: 10;
+  text-align: center;
+  position: fixed;
+  top: 25%;
+  left: calc(50% - 12.5vw);
+  background-color: white;
+  border-radius: 10px;
+
+  .dropDownBtn {
+    display: flex;
+    justify-content: space-around;
+  }
+}

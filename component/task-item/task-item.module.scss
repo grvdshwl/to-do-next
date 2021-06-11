@@ -1,0 +1,25 @@
+.item {
+  min-width: 6em;
+  width: auto;
+  font-size: x-large;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 10px;
+  font-family: "sans-serif";
+  font-weight: bolder;
+  text-transform: capitalize;
+  background-color: lightblue;
+  letter-spacing: 1px;
+  text-align: center;
+
+  &:hover {
+    background-color: pink;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}

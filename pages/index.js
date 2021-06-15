@@ -3,17 +3,23 @@ import InputButton from "../component/input-button/input-button.component";
 import { useState } from "react";
 import styles from "./index.module.scss";
 import TaskList from "../component/task-list/task-list.component";
-import DropDown from "../component/drop-down/drop-down.component";
+
+import AlertButton from "../component/alert-button/alert-button";
 
 const HomePage = () => {
   const [toDoValue, setValue] = useState("");
   const [toDoArray, setArray] = useState([]);
+  const [repeatStatus, setRepeatStatus] = useState(false);
 
   const insertTask = (event) => {
     event.preventDefault();
     if (toDoValue) {
-      setArray((oldArray) => [...oldArray, toDoValue]);
-      setValue("");
+      if (toDoArray.some((task) => task === toDoValue)) {
+        setRepeatStatus(true);
+      } else {
+        setArray((oldArray) => [...oldArray, toDoValue]);
+        setValue("");
+      }
     }
   };
 
@@ -37,8 +43,18 @@ const HomePage = () => {
       >
         <InputBar handleChange={handleChange} value={toDoValue} />
         <InputButton type="submit" value="Add" />
+        <div style={{ margin: "25px" }}>Total Tasks :{toDoArray.length}</div>
       </form>
       <TaskList array={toDoArray} removeItem={removeItem} />
+      {repeatStatus && (
+        <AlertButton
+          inputText={`${toDoValue}! already exists`}
+          handleClick={() => {
+            setRepeatStatus(false);
+            setValue("");
+          }}
+        />
+      )}
     </>
   );
 };
